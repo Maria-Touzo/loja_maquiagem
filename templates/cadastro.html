@@ -8,9 +8,13 @@
 </head>
     
 <body>
-    <h1 class="titulo">Cadastro de Usuário</h1>
+    <main>
+        <header class="header">
+            <h1>Cadastro de Usuário</h1>
+        </header>
     
-    <form action="/cadastro" method="POST">
+    <section class="form">
+        <form action="/cadastro" method="POST">
         <div>
             <label for="nome">Nome Completo:</label>
             <input type="text" id="nome" name="nome" required>
@@ -21,7 +25,7 @@
             <input type="email" id="email" name="email" required>
         </div>
         <br>
-        <div>
+        <div></div>
             <label for="telefone">Telefone:</label>
             <input type="tel" id="telefone" name="telefone" required>
         </div>
@@ -36,7 +40,15 @@
             <input type="text" id="endereco" name="endereco" required>
         </div>
         <br>
+        </form>
+    </section>
+    
+    <section class="button">
         <button type="submit">Cadastrar</button>
-    </form>
+    </section>
+        
+    
+    </main>
+    
 </body>
 </html>
