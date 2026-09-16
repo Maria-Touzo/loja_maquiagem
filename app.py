@@ -29,8 +29,29 @@ def cadastro():
   
     return render_template("cadastro.html")
 
-# rota para a página login
 
+# rota para a página login
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == "POST":
+        email = request.form.get("email")
+        senha = request.form.get("senha")
+        
+        try:
+            # Tenta buscar o usuário no banco de dados
+            usuario_encontrado = Usuario.logar(email, senha)
+            print(f"Resultado do banco: {usuario_encontrado}")
+        except Exception as e:
+            print(f"Erro ao acessar o banco de dados: {e}")
+            return "Erro interno no servidor ao tentar logar."
+        
+        if usuario_encontrado:
+            return "Login feito com sucesso! Bem-vindo(a)!"
+        else:
+            return "E-mail ou senha incorretos."
+            
+    # Se for GET, mostra a página HTML do login
+    return render_template('login.html')
 # rota para a página produto
 @app.route("/produtos")
 def produtos():

@@ -22,9 +22,9 @@ class Usuario:
     def logar(usuario:str, senha:str) ->dict:
         conexao, cursor = conectar()
         cursor.execute("""
-                        SELECT * FROM usuarios WHERE usuario = %s AND senha  %s;
+                        SELECT * FROM tb_usuarios WHERE email = %s AND senha =  %s;
                        """, 
                        [usuario, senha ])
-        resultado = cursor.fetchone
+        resultado = cursor.fetchone()
         conexao.close()
         return resultado
