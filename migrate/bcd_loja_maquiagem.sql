@@ -24,10 +24,10 @@ CREATE TABLE  IF NOT EXISTS tb_produtos_imagens (
 
 CREATE TABLE  IF NOT EXISTS tb_usuarios (
  id_usuario INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
- nome VARCHAR(150) NOT NULL,
- email VARCHAR(150) ,
+ nome VARCHAR(150) ,
+ email NOT NULL UNIQUE VARCHAR(150) ,
  telefone VARCHAR(20),
- senha VARCHAR(10),
+ senha NOT NULL VARCHAR(10),
  endereco VARCHAR(100)
 );
 
