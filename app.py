@@ -8,6 +8,7 @@ app = Flask(__name__)
 def pag_index():
     return render_template("index.html")
 
+# rota para a página cadastro
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
     if request.method == "POST":
@@ -28,7 +29,7 @@ def cadastro():
   
     return render_template("cadastro.html")
 
-
+# rota para a página login
 
 # rota para a página produto
 @app.route("/produtos")
