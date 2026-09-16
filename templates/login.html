@@ -3,34 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja de Maquiagem</title>
+    <title>Loja de Maquiagem - Login</title>
     <link rel="stylesheet" href="/static/src/styles/login.css">
 </head>
 <body>
 
-    <header>
-            <h2>Login</h2>
+    <header class="header">
+        <h2 class="header__title">Login</h2>
     </header>
 
-    <main>
-        <h1>Acessar Conta</h1>
+    <main class="login-container">
+        <h1 class="login-container__title">Acessar Conta</h1>
 
-        <form action="/login" method="POST">
-            <div>
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required>
+        <form action="/login" method="POST" class="login-form">
+            <div class="form-group">
+                <label for="email" class="form-group__label">E-mail:</label>
+                <input type="email" id="email" name="email" class="form-group__input" required>
             </div>
-            <br>
-            <div>
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required>
+
+            <div class="form-group">
+                <label for="senha" class="form-group__label">Senha:</label>
+                <input type="password" id="senha" name="senha" class="form-group__input" required>
             </div>
-            <br>
-            <button type="submit">Entrar</button>
+
+            <button type="submit" class="login-form__button">Entrar</button>
         </form>
     </main>
-
-   
 
 </body>
 </html>
