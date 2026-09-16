@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Maquiagem</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/styles/index.css') }}">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <h2>Loja de Maquiagem</h2>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Início</a></li>
+                <li><a href="{{ url_for('catalogo') }}">Catálogo</a></li>
+                <li><a href="{{ url_for('categorias') }}">Categorias</a></li>
+                
+                <!-- Condicional do Jinja2 para a Sessão (Critério 6) -->
+                {% if session.get('usuario_id') %}
+                    <li><a href="{{ url_for('logout') }}">Sair</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('cadastro') }}">Cadastro</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+
+                <li><a href="{{ url_for('carrinho') }}">Carrinho</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- PONTO CHAVE: É aqui que o Jinja2 vai inserir as páginas filhas -->
+    <main>
+        {% block conteudo %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; Loja de Maquiagem - Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>

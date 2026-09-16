@@ -19,12 +19,12 @@ class Usuario:
         return True
 
     @staticmethod
-    def logar(usuario:str, senha:str) ->dict:
+    def logar(email:str, senha:str) ->dict:
         conexao, cursor = conectar()
         cursor.execute("""
                         SELECT * FROM tb_usuarios WHERE email = %s AND senha =  %s;
                        """, 
-                       [usuario, senha ])
+                       [email, senha ])
         resultado = cursor.fetchone()
         conexao.close()
         return resultado

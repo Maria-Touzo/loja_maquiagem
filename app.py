@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-
+from model.produtos import Produto, ProdutoImagem
 from model.usuario import Usuario
 app = Flask(__name__)
 
@@ -48,10 +48,12 @@ def login():
             return "E-mail ou senha incorretos."
             
     return render_template('login.html')
+
 # rota para a página produto
-@app.route("/produtos")
-def produtos():
-    return render_template("produtos.html")
+@app.route("/produtos/<int:id_produto>")
+def detalhes_produtos(id_produto:int):
+    produto = buscar_por_id(id_produto)
+    return render_template("produtos.html", )
 
 # rota para a página categoria
 @app.route("/categorias")
@@ -61,6 +63,7 @@ def categorias():
 # rota para a página catálogo
 @app.route("/catalogo")
 def catalogo():
-    return render_template("catalogo.html")
+    produtos = Produto.listar_todos()
+    return render_template("catalogo.html", produtos = produtos)
 
 app.run(debug= True)
