@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from model.produtos import Produto, ProdutoImagem
 from model.usuario import Usuario
+from model.comentarios import Comentarios
 app = Flask(__name__)
 
 # rota pra abrir a página index
@@ -49,11 +50,30 @@ def login():
             
     return render_template('login.html')
 
+# rota para cadastrar comentário se o usuário estiver logado
+@app.route("/cadastrar_comentario", methods=["POST"])
+def cadastrar_comentario():
+    
+    # verifica se o usuário está no logado
+        if not session.get('usuario_id'):
+            # pegando os dados do html
+                id_produto = request.form.get("id_produto")
+                texto = request.form.get("texto")
+                id_usuario = session.get("usuario_id")
+                Comentario.salvar(id_produto, id_usuario, texto)
+                # se não estiver, redirecione para login
+                return redirect(url_for('login'))
+                
+                return redirect(url_for('detalhes_produto', id_produto=id_produto))
+
 # rota para a página produto
 @app.route("/produtos/<int:id_produto>")
 def detalhes_produtos(id_produto:int):
-    produto = buscar_por_id(id_produto)
-    return render_template("produtos.html", )
+    produto_encontrado = buscar_por_id(id_produto)
+    lista_comentarios = Comentarios.buscar_por_produto(id_produto)
+    return render_template("produtos.html", 
+    produto = produto_encontrado,
+    comentarios = lista_comentarios)
 
 # rota para a página categoria
 @app.route("/categorias")
