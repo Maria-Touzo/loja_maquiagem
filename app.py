@@ -40,9 +40,9 @@ def login():
         try:
             # Tenta buscar o usuário no banco de dados
             usuario_encontrado = Usuario.logar(email, senha)
-            print(f"Resultado do banco: {usuario_encontrado}")
+            
         except Exception as e:
-            print(f"Erro ao acessar o banco de dados: {e}")
+            
             return "Erro interno no servidor ao tentar logar."
         
         if usuario_encontrado:
