@@ -1,3 +1,33 @@
 {% extends 'base.html' %}
 
+<!-- Pega os dados de um único produto e joga na tela -->
+    <div class="caixa-produto">
+            <img src="{{ url_for('static', filename='img/' ~ produto.foto_principal) }}">
+            <h1>{{ produto.nome_produto }}</h1>
+            <p>Preço: R$ {{ produto.preco }}</p>
+            <p>{{ produto.descricao }}</p>
+        </div>
+<!-- repete os comentários, caso exista -->
+        <h3>Comentários dos Clientes:</h3>
+        {% for comentario in comentarios %}
+        <div class="comentario">
+            <strong>{{ comentario.nome_usuario }} escreveu:</strong>
+            <p>{{ comentario.texto }}</p>
+        </div>
+        {% endfor %}
+
+        <!-- verifica se o cliente está logado, para poder realizar um comentário -->
+         {% if session.get('usuario_id') %}
+        <form action="/comentar" method="POST">
+           <!-- envia o id_produto escondido do cliente -->
+            <input type="hidden" name="id_produto" value="{{ produto.id_produto }}">
+            
+            <textarea name="texto" placeholder="Digite seu comentário..."></textarea>
+            <button type="submit">Enviar Comentário</button>
+        </form>
+        {% else %}
+        <p>Quer comentar? Faça <a href="{{ url_for('login') }}">login aqui</a>.</p>
+       {% endif %}
+
+
 {% block conteudo %}
