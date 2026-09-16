@@ -37,20 +37,16 @@ def login():
         email = request.form.get("email")
         senha = request.form.get("senha")
         
-        try:
-            # Tenta buscar o usuário no banco de dados
-            usuario_encontrado = Usuario.logar(email, senha)
+       
+        usuario_encontrado = Usuario.logar(email, senha)
             
-        except Exception as e:
-            
-            return "Erro interno no servidor ao tentar logar."
+      
         
         if usuario_encontrado:
             return "Login feito com sucesso! Bem-vindo(a)!"
         else:
             return "E-mail ou senha incorretos."
             
-    # Se for GET, mostra a página HTML do login
     return render_template('login.html')
 # rota para a página produto
 @app.route("/produtos")
