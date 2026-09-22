@@ -1,19 +1,44 @@
+{% extends 'base.html' %}
 
-    {% extends 'base.html'%}
-    {% block conteudo%}
-        
-        <section>
-            <img src="{{ url_for('static', filename='banner.jpg') }}" alt="Destaque Loja de Maquiagem">
-            <h1>Sua beleza em primeiro lugar</h1>
-            <p>Confira os lançamentos da temporada!</p>
-        </section>
+{% block title %}Glow & Glam | Sua beleza em primeiro lugar{% endblock %}
 
-        
-        <section>
-            <h2>Sobre a Nossa Loja</h2>
-            <p>Oferecemos a melhor linha de cosméticos e maquiagens para realçar sua beleza com qualidade e elegância.</p>
-        </section>
+{% block conteudo %}
+<!-- Banner Principal (Hero) -->
+<section class="hero-banner">
+    <div class="hero-image">
+        <img src="{{ url_for('static', filename='banner.jpg') }}" alt="Destaque Loja de Maquiagem">
+    </div>
+    <div class="hero-content">
+        <h1>Sua beleza em primeiro lugar</h1>
+        <p>Confira os lançamentos mais desejados da temporada com fórmulas de alta durabilidade e acabamento impecável.</p>
+        <a href="{{ url_for('catalogo') }}" class="btn hero-btn">Ver Lançamentos</a>
+    </div>
+</section>
 
-    {% endblock %}
+<!-- Seção Sobre a Loja -->
+<section class="about-section">
+    <div class="about-card">
+        <h2>Sobre a Nossa Loja</h2>
+        <p>Oferecemos a melhor linha de cosméticos e maquiagens para realçar sua beleza natural com qualidade, sofisticação e elegância. Todos os nossos produtos são cuidadosamente selecionados para proporcionar a melhor experiência.</p>
+    </div>
+</section>
 
-    
+<!-- Benefícios / Diferenciais -->
+<section class="features-section">
+    <div class="feature-item">
+        <div class="feature-icon">✨</div>
+        <h3>Produtos Importados & Nacionais</h3>
+        <p>As melhores marcas reunidas em um só lugar.</p>
+    </div>
+    <div class="feature-item">
+        <div class="feature-icon">🚚</div>
+        <h3>Entrega Rápida</h3>
+        <p>Receba seus produtos com segurança no conforto de casa.</p>
+    </div>
+    <div class="feature-item">
+        <div class="feature-icon">💖</div>
+        <h3>Atendimento Exclusivo</h3>
+        <p>Suporte pronto para ajudar você a escolher a maquiagem ideal.</p>
+    </div>
+</section>
+{% endblock %}

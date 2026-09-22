@@ -1,45 +1,54 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro de Usuário</title>
-  <link rel="stylesheet" href="/static/src/styles/cadastro.css">
-</head>
-<body>
+{% extends 'base.html' %}
 
-  <div class="card-cadastro">
-    <h2>Cadastro de Usuário</h2>
+{% block title %}Cadastro | Glow & Glam{% endblock %}
 
-    <form>
-      <div class="campo-grupo">
-        <label for="nome">Nome Completo:</label>
-        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
-      </div>
+{% block conteudo %}
+<div class="form-container">
+    <h1 class="page-title">Criar Conta</h1>
 
-      <div class="campo-grupo">
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
-      </div>
+    <!-- Exibição de mensagens de erro (ex: e-mail já cadastrado) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
-      <div class="campo-grupo">
-        <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000">
-      </div>
+    <form action="{{ url_for('cadastro') }}" method="POST">
+        
+        <div class="form-group">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+        </div>
 
-      <div class="campo-grupo">
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required>
-      </div>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+        </div>
 
-      <div class="campo-grupo">
-        <label for="endereco">Endereço:</label>
-        <input type="text" id="endereco" name="endereco" placeholder="Rua, número, bairro">
-      </div>
+        <div class="form-group">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required>
+        </div>
 
-      <button type="submit" class="btn-cadastrar">Cadastrar</button>
+        <div class="form-group">
+            <label for="endereco">Endereço completo</label>
+            <input type="text" id="endereco" name="endereco" placeholder="rua, número, bairro" required>
+        </div>
+
+        <div class="form-group">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" placeholder="Crie uma senha segura" required minlength="6">
+        </div>
+
+        <button type="submit" class="btn btn-form">Cadastrar</button>
     </form>
-  </div>
 
-</body>
-</html>
+    <div class="form-footer">
+        <p>Já possui uma conta? <a href="{{ url_for('login') }}">Faça login aqui</a></p>
+    </div>
+</div>
+{% endblock %}
