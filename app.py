@@ -12,8 +12,10 @@ def index():
 
 
 @app.route("/cadastro", methods=["GET", "POST"])
+@app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
     if request.method == "POST":
+        print(">>> CHEGOU NO POST! <<<")  
         nome = request.form.get("nome")
         email = request.form.get("email")
         telefone = request.form.get("telefone")
