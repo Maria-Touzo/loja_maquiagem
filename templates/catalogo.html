@@ -12,7 +12,9 @@
             <div class="product-info">
                 <h3 class="product-title">{{ produto.nome_produto }}</h3>
                 <div class="product-price">R$ {{ produto.preco }}</div>
-                <a href="{{ url_for('produto', id=produto.id_produto) }}" class="btn" style="margin-top: auto;">Ver Detalhes</a>
+                
+                <!-- Ajuste no url_for: endpoint 'detalhes_produtos' e parâmetro 'id_produto' -->
+                <a href="{{ url_for('detalhes_produtos', id_produto=produto.id_produto) }}" class="btn" style="margin-top: auto;">Ver Detalhes</a>
             </div>
         </div>
     {% else %}

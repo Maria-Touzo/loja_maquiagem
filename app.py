@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-from model.produtos import Produto, ProdutoImagem
+from model.produtos import Produto
 from model.usuario import Usuario
 from model.comentarios import Comentario
 from model.categorias import Categoria
@@ -69,7 +69,7 @@ def catalogo():
 def detalhes_produtos(id_produto: int):
     
     produto_encontrado = Produto.buscar_por_id(id_produto)
-    lista_comentarios = Comentarios.buscar_por_produto(id_produto)
+    lista_comentarios = Comentario.buscar_comentario_por_produto(id_produto)
     
     return render_template("produtos.html", produto= produto_encontrado, comentarios=lista_comentarios)
 
