@@ -1,9 +1,9 @@
-from database import conectar
+from database.conexao import conectar
 
 class Categoria:
 
     @staticmethod
-    def listar_todas():
+    def listar_todas_categorias():
         conexao, cursor = conectar()
         cursor.execute("""
                         SELECT * FROM tb_categorias;
@@ -16,7 +16,7 @@ class Categoria:
     def buscar_por_id(id_categoria):
         conexao, cursor = conectar()
         cursor.execute("""
-                        SELECT * FROM tb_categorias WHERE id_categoria=%s;""",[id_categoria])
+                        SELECT * FROM tb_categorias WHERE id_categoria=%s;""", [id_categoria])
         resultado = cursor.fetchone()
         conexao.close()
         return resultado

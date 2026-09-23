@@ -6,34 +6,11 @@
 <h1 class="page-title">Categorias de Produtos</h1>
 
 <div class="category-grid">
-    <a href="{{ url_for('catalogo', categoria='labios') }}" class="category-card">
-        <div class="category-icon">💄</div>
-        <h3>Lábios</h3>
-        <p>Batons, Gloss, Lip Tint e Lápis Labial</p>
+    {% for categoria in categorias %}
+    <a href="{{ url_for('catalogo', categoria=categoria.id_categoria) }}" class="category-card">
+        <h3>{{ categoria.nome_categoria }}</h3>
     </a>
-
-    <a href="{{ url_for('catalogo', categoria='rosto') }}" class="category-card">
-        <div class="category-icon">✨</div>
-        <h3>Rosto</h3>
-        <p>Bases, Corretivos, Pós e Iluminadores</p>
-    </a>
-
-    <a href="{{ url_for('catalogo', categoria='olhos') }}" class="category-card">
-        <div class="category-icon">👁️</div>
-        <h3>Olhos</h3>
-        <p>Paletas de Sombra, Máscaras e Delineadores</p>
-    </a>
-
-    <a href="{{ url_for('catalogo', categoria='acessorios') }}" class="category-card">
-        <div class="category-icon">🖌️</div>
-        <h3>Pincéis & Acessórios</h3>
-        <p>Pincéis, Esponjas e Curvadores</p>
-    </a>
-
-    <a href="{{ url_for('catalogo', categoria='bolsas') }}" class="category-card">
-        <div class="category-icon">👝</div>
-        <h3>Necessaires & Bolsas</h3>
-        <p>Organizadores e Maletas de Maquiagem</p>
-    </a>
+    {% endfor %}
 </div>
+
 {% endblock %}

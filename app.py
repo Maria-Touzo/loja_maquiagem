@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from model.produtos import Produto, ProdutoImagem
 from model.usuario import Usuario
 from model.comentarios import Comentario
+from model.categorias import Categoria
 
 
 app = Flask(__name__)
@@ -9,7 +10,8 @@ app.secret_key = 'chave_secreta_loja_maquiagem'
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    destaque = Produto.listar_destaque()
+    return render_template("index.html", produtos = destaque)
 
 
 @app.route("/cadastro", methods=["GET", "POST"])
@@ -84,8 +86,8 @@ def cadastrar_comentario():
 
 @app.route("/categorias")
 def categorias():
-    categorias_listar = Categoria.listar_todas()
-    return render_template("categorias.html", categoria = categorias_listar)
+    categorias_listar = Categoria.listar_todas_categorias()
+    return render_template("categorias.html", categorias = categorias_listar)
 
 if __name__ == "__main__":
     app.run(debug=True)

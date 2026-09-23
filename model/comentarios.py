@@ -1,4 +1,4 @@
-from database import conectar
+from database.conexao import conectar
 
 class Comentario():
     def __init__(self, id_comentario, id_produto, id_usuario, texto, data ):

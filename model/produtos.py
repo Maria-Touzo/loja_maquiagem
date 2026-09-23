@@ -69,3 +69,17 @@ class Produto:
         resultado = cursor.fetchone()
         conexao.close()
         return resultado
+
+    @staticmethod
+    def listar_destaque():
+        conexao, cursor = conectar()
+        cursor.execute("""
+        SELECT id_produto, nome_produto, preco, foto_principal
+        FROM tb_produtos
+        ORDER BY id_produto DESC
+        LIMIT 4;
+        """)
+        resultado = cursor.fetchall()
+        cursor.close()
+        conexao.close()
+        return resultado
