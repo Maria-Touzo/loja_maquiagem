@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from model.produtos import Produto, ProdutoImagem
 from model.usuario import Usuario
-from model.comentarios import Comentarios
+
 
 app = Flask(__name__)
 app.secret_key = 'chave_secreta_loja_maquiagem' 
@@ -11,7 +11,6 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/cadastro", methods=["GET", "POST"])
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
     if request.method == "POST":

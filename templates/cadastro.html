@@ -6,16 +6,6 @@
 <div class="form-container">
     <h1 class="page-title">Criar Conta</h1>
 
-    <!-- Exibição de mensagens de erro (ex: e-mail já cadastrado) -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
 
     <form action="{{ url_for('cadastro') }}" method="POST">
         

@@ -11,38 +11,38 @@
         </div>
 
         <div class="product-details-box">
-            <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">{{ produto.nome_produto }}</h1>
-            <div style="font-size: 1.8rem; font-weight: 700; color: var(--primary); margin-bottom: 1rem;">
-                R$ {{ produto.preco }}
+            <h1> </h1>
+            <div>
+                
             </div>
-            <p style="color: var(--text-muted); margin-bottom: 2rem;">{{ produto.descricao }}</p>
+            <p ></p>
             <button class="btn">Adicionar ao Carrinho</button>
         </div>
     </div>
 
     <section class="comments-section">
-        <h3 style="margin-bottom: 1.5rem;">Comentários dos Clientes</h3>
+        <h3>Comentários dos Clientes</h3>
 
-        {% for comentario in comentarios %}
+       
             <div class="comment-card">
-                <strong style="color: var(--primary-hover);">{{ comentario.nome_usuario }} escreveu:</strong>
-                <p style="margin-top: 0.3rem;">{{ comentario.texto }}</p>
+                <strong:> escreveu:</strong>
+                <p></p>
             </div>
-        {% else %}
+       
             <p style="color: var(--text-muted);">Sem comentários ainda. Seja o primeiro!</p>
-        {% endfor %}
+        
 
         <div style="margin-top: 2rem;">
-            {% if session.get('usuario_id') %}
+            
                 <form action="/comentar" method="POST">
-                    <input type="hidden" name="id_produto" value="{{ produto.id_produto }}">
+                    <input type="hidden" name="id_produto" value="">
                     <div class="form-group">
                         <textarea name="texto" rows="3" placeholder="Escreva seu comentário..." required></textarea>
                     </div>
                     <button type="submit" class="btn" style="width: auto;">Enviar Comentário</button>
                 </form>
-            {% else %}
-                <p>Quer comentar? Faça <a href="{{ url_for('login') }}" style="color: var(--primary); font-weight: 600;">login aqui</a>.</p>
+           
+                <p>Quer comentar? Faça <a href="" style="color: var(--primary); font-weight: 600;">login aqui</a>.</p>
             {% endif %}
         </div>
     </section>
