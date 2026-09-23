@@ -1,51 +1,29 @@
-{% extends 'base.html' %}
-
-{% block title %}{{ produto.nome_produto }} | Glow & Glam{% endblock %}
-
-{% block conteudo %}
-<div class="product-detail-container">
-    
-    <div class="product-main-info">
-        <div class="product-image-box">
-            <img src="{{ url_for('static', filename='img/' ~ produto.foto_principal) }}" alt="{{ produto.nome_produto }}">
-        </div>
-
-        <div class="product-details-box">
-            <h1> </h1>
-            <div>
-                
-            </div>
-            <p ></p>
-            <button class="btn">Adicionar ao Carrinho</button>
-        </div>
-    </div>
-
-    <section class="comments-section">
+<section class="comments-section">
         <h3>Comentários dos Clientes</h3>
 
-       
-            <div class="comment-card">
-                <strong:> escreveu:</strong>
-                <p></p>
-            </div>
-       
-            <p style="color: var(--text-muted);">Sem comentários ainda. Seja o primeiro!</p>
-        
+        {% if comentarios %}
+            {% for comentario in comentarios %}
+                <div class="comment-card">
+                    <strong>{{ comentario.nome }} escreveu:</strong>
+                    <p>{{ comentario.texto }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Sem comentários ainda. Seja o primeiro!</p>
+        {% endif %}
 
-        <div style="margin-top: 2rem;">
-            
-                <form action="/comentar" method="POST">
-                    <input type="hidden" name="id_produto" value="">
+        
+        <div>
+            {% if session.get('usuario_id') %}
+                <form action="{{ url_for('cadastrar_comentario') }}" method="POST">
+                    <input type="hidden" name="id_produto" value="{{ produto.id_produto }}">
                     <div class="form-group">
                         <textarea name="texto" rows="3" placeholder="Escreva seu comentário..." required></textarea>
                     </div>
-                    <button type="submit" class="btn" style="width: auto;">Enviar Comentário</button>
+                    <button type="submit" class="btn">Enviar Comentário</button>
                 </form>
-           
-                <p>Quer comentar? Faça <a href="" style="color: var(--primary); font-weight: 600;">login aqui</a>.</p>
+            {% else %}
+                <p>Quer comentar? Faça <a href="{{ url_for('login') }}" >login aqui</a>.</p>
             {% endif %}
         </div>
     </section>
-
-</div>
-{% endblock %}

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from model.produtos import Produto, ProdutoImagem
 from model.usuario import Usuario
+from model.comentarios import Comentario
 
 
 app = Flask(__name__)
@@ -14,15 +15,11 @@ def index():
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
     if request.method == "POST":
-        print(">>> CHEGOU NO POST! <<<")  
         nome = request.form.get("nome")
         email = request.form.get("email")
         telefone = request.form.get("telefone")
         senha = request.form.get("senha")
         endereco = request.form.get("endereco")
-        
-        novo_usuario = Usuario(nome, email, telefone, senha, endereco)
-        sucesso = novo_usuario.cadastrar()
         
         if sucesso:
             return redirect(url_for("login"))
@@ -68,27 +65,27 @@ def catalogo():
 
 @app.route("/produtos/<int:id_produto>")
 def detalhes_produtos(id_produto: int):
-    produto_encontrado = buscar_por_id(id_produto)
+    produto_encontrado = Produto.buscar_por_id(id_produto)
     lista_comentarios = Comentarios.buscar_por_produto(id_produto)
     return render_template("produtos.html", produto=produto_encontrado, comentarios=lista_comentarios)
 
-
 @app.route("/cadastrar_comentario", methods=["POST"])
 def cadastrar_comentario():
-    if "usuario_id" not in session:
+     if "usuario_id" not in session:
         return redirect(url_for('login'))
         
-    id_produto = request.form.get("id_produto")
-    texto = request.form.get("texto")
-    id_usuario = session.get("usuario_id")
+     id_produto = int(request.form.get("id_produto"))
+     texto = request.form.get("texto")
+     id_usuario = session.get("usuario_id")
     
-    Comentarios.salvar(id_produto, id_usuario, texto)
-    return redirect(url_for('detalhes_produtos', id_produto=id_produto))
+     Comentario.salvar_comentario(id_produto, id_usuario, texto)
+     return redirect(url_for('detalhes_produtos', id_produto=id_produto))
 
 
 @app.route("/categorias")
 def categorias():
-    return render_template("categorias.html")
+    categorias_listar = Categoria.listar_todas()
+    return render_template("categorias.html", categoria = categorias_listar)
 
 if __name__ == "__main__":
     app.run(debug=True)
