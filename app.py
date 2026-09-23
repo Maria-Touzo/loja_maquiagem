@@ -59,7 +59,7 @@ def logout():
 def catalogo():
     id_categoria = request.args.get('categoria')
     if id_categoria:
-        produtos = Produto.listar_por_categoria(id_categoria)
+        produtos = Produto.buscar_por_categorias(id_categoria)
     else:
         produtos = Produto.listar_todos()
     return render_template("catalogo.html", produtos=produtos)
@@ -67,9 +67,11 @@ def catalogo():
 
 @app.route("/produtos/<int:id_produto>")
 def detalhes_produtos(id_produto: int):
+    
     produto_encontrado = Produto.buscar_por_id(id_produto)
     lista_comentarios = Comentarios.buscar_por_produto(id_produto)
-    return render_template("produtos.html", produto=produto_encontrado, comentarios=lista_comentarios)
+    
+    return render_template("produtos.html", produto= produto_encontrado, comentarios=lista_comentarios)
 
 @app.route("/cadastrar_comentario", methods=["POST"])
 def cadastrar_comentario():
