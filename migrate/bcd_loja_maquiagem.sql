@@ -45,3 +45,6 @@ INSERT INTO tb_usuarios(nome, email, telefone, senha, endereco)
  
  INSERT INTO tb_produtos(id_categoria, nome_produto, descricao, preco, foto_principal)
  VALUES ('1','blush maju', 'blsuh rosa', '20.00', 'https://i.pinimg.com/474x/9c/8e/13/9c8e131f6fd89e4da71652e4a2adea38.jpg');
+ 
+ INSERT INTO tb_comentarios(id_produto, id_usuario, texto)
+ VALUES ('1', '1', 'lindo esse blush');
