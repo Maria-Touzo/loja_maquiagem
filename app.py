@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 from model.produtos import Produto
 from model.usuario import Usuario
 from model.comentarios import Comentario
@@ -12,6 +12,10 @@ app.secret_key = 'chave_secreta_loja_maquiagem'
 def index():
     destaque = Produto.listar_destaque()
     return render_template("index.html", produtos = destaque)
+
+@app.route("/carrinho")
+def carinho():
+    return render_template("carrinho.html")
 
 
 @app.route("/cadastro", methods=["GET", "POST"])
@@ -72,6 +76,14 @@ def detalhes_produtos(id_produto: int):
     lista_comentarios = Comentario.buscar_comentario_por_produto(id_produto)
     
     return render_template("produtos.html", produto= produto_encontrado, comentarios=lista_comentarios)
+
+@app.route("/api/produtos/<int:id_produto>")
+def detalhes_produtosdf(id_produto: int):
+    
+    produto_encontrado = Produto.buscar_por_id(id_produto)
+    lista_comentarios = Comentario.buscar_comentario_por_produto(id_produto)
+    
+    return jsonify(lista_comentarios)
 
 @app.route("/cadastrar_comentario", methods=["POST"])
 def cadastrar_comentario():
