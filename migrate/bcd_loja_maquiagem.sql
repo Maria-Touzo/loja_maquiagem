@@ -49,6 +49,9 @@ INSERT INTO tb_categorias(nome_categoria)
  INSERT INTO tb_categorias(nome_categoria)
  VALUES ('base');
  
+ INSERT INTO tb_categorias(nome_categoria)
+ VALUES ('rímel');
+ 
  INSERT INTO tb_produtos(id_categoria, nome_produto, descricao, preco, foto_principal)
  VALUES ('1','blush maju', 'blsuh rosa', '20.00', 'https://i.pinimg.com/474x/9c/8e/13/9c8e131f6fd89e4da71652e4a2adea38.jpg');
  
@@ -57,6 +60,12 @@ INSERT INTO tb_categorias(nome_categoria)
  
  INSERT INTO tb_produtos(id_categoria, nome_produto, descricao, preco, foto_principal)
  VALUES ('3','base glow', 'base glow, sua melhor escolha', '40.00', 'https://i.pinimg.com/236x/9c/6e/4b/9c6e4b19b2337d6aad70d2aa87d8fe6c.jpg');
+ 
+ INSERT INTO tb_produtos(id_categoria, nome_produto, descricao, preco, foto_principal)
+ VALUES ('3','base glow - pele negra', 'base glow, sua melhor escolha', '40.00', 'https://cdn.awsli.com.br/2252/2252693/produto/290023126/bege-1-jlyjc4ssc4.png');
+ 
+  INSERT INTO tb_produtos(id_categoria, nome_produto, descricao, preco, foto_principal)
+ VALUES ('4','Rímel', 'O melhor rímel da sua vida', '30.00', 'https://static.vecteezy.com/system/resources/thumbnails/027/243/512/small_2x/mascara-brush-makeup-packaging-golden-cap-isolated-3d-illustration-png.png');
  
  INSERT INTO tb_comentarios(id_produto, id_usuario, texto)
  VALUES ('1', '1', 'lindo esse blush');
