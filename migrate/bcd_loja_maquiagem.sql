@@ -39,3 +39,6 @@ ALTER TABLE tb_comentarios ADD CONSTRAINT FK_tb_comentarios_1 FOREIGN KEY (id_us
 
 INSERT INTO tb_usuarios(nome, email, telefone, senha, endereco)
  VALUES('maju', 'maju.t@gmail.com', '(16) 998765544', 'maju12', 'rua das dores');
+ 
+ INSERT INTO tb_categorias(nome_categoria)
+ VALUES ('blush');
