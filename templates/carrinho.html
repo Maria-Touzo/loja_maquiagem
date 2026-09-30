@@ -1,78 +1,58 @@
-<!-- Painel do Carrinho Lateral (Drawer) -->
-<aside class="cart-drawer" id="cartDrawer" aria-label="Carrinho de Compras" aria-hidden="true">
-  
-  <!-- Overlay (fundo escuro transparente para fechar ao clicar fora) -->
-  <div class="cart-overlay" data-close-cart></div>
+<!-- Fundo escuro semi-transparente para dar destaque ao carrinho -->
+<div id="carrinho-overlay" class="carrinho-overlay"></div>
 
-  <!-- Conteúdo Principal do Painel -->
-  <div class="cart-content">
+<!-- Painel Lateral do Carrinho (Drawer) -->
+<aside id="carrinho-lateral" class="carrinho-lateral">
     
     <!-- Cabeçalho do Carrinho -->
-    <header class="cart-header">
-      <h2>Seu Carrinho (<span class="cart-count">2</span>)</h2>
-      <button type="button" class="btn-close" aria-label="Fechar carrinho" data-close-cart>&times;</button>
-    </header>
-
-    <!-- Lista de Produtos (Rolável) -->
-    <div class="cart-body">
-      <ul class="cart-items-list">
-        
-        <!-- Item 1 -->
-        <li class="cart-item">
-          <img src="https://via.placeholder.com/70" alt="Tênis Esportivo Preto" class="cart-item-img">
-          
-          <div class="cart-item-details">
-            <h3 class="cart-item-title">Tênis Esportivo Preto</h3>
-            <p class="cart-item-meta">Tam: 41 | Cor: Preto</p>
-            <span class="cart-item-price">R$ 299,90</span>
-            
-            <div class="cart-item-actions">
-              <div class="qty-selector">
-                <button type="button" aria-label="Diminuir quantidade">-</button>
-                <input type="number" value="1" min="1" readonly>
-                <button type="button" aria-label="Aumentar quantidade">+</button>
-              </div>
-              <button type="button" class="btn-remove-item" aria-label="Remover produto">Remover</button>
-            </div>
-          </div>
-        </li>
-
-        <!-- Item 2 -->
-        <li class="cart-item">
-          <img src="https://via.placeholder.com/70" alt="Camiseta Algodão Básica" class="cart-item-img">
-          
-          <div class="cart-item-details">
-            <h3 class="cart-item-title">Camiseta Algodão Básica</h3>
-            <p class="cart-item-meta">Tam: G | Cor: Branca</p>
-            <span class="cart-item-price">R$ 59,90</span>
-            
-            <div class="cart-item-actions">
-              <div class="qty-selector">
-                <button type="button" aria-label="Diminuir quantidade">-</button>
-                <input type="number" value="2" min="1" readonly>
-                <button type="button" aria-label="Aumentar quantidade">+</button>
-              </div>
-              <button type="button" class="btn-remove-item" aria-label="Remover produto">Remover</button>
-            </div>
-          </div>
-        </li>
-
-      </ul>
+    <div class="carrinho-header">
+        <h2>Seu Carrinho</h2>
+        <button type="button" id="btn-fechar-carrinho" class="btn-fechar" aria-label="Fechar carrinho">&times;</button>
     </div>
 
-    <!-- Rodapé com Subtotal e Checkout -->
-    <footer class="cart-footer">
-      <div class="cart-subtotal">
-        <span>Subtotal</span>
-        <strong class="total-amount">R$ 419,70</strong>
-      </div>
-      <p class="cart-shipping-note">Frete e descontos calculados no checkout.</p>
-      
-      <div class="cart-buttons">
-        <a href="/checkout" class="btn-checkout">Finalizar Compra</a>
-        <a href="/carrinho" class="btn-view-cart">Ver Carrinho Completo</a>
-      </div>
-    </footer>
+  
+    <div class="carrinho-body">
+        
+       
+        <div class="carrinho-itens">
+            
+           
+            <div class="carrinho-item">
+                <img src="static/img/batom_red.jpg" alt="Batom Vermelho" class="item-img">
+                
+                <div class="item-detalhes">
+                    <h4 class="item-titulo">Batom Vermelho</h4>
+                    <p class="item-preco">R$ 10,00</p>
+                    
+                    <div class="item-qtd-controles">
+                        <button type="button" class="btn-qtd">-</button>
+                        <span class="item-qtd">1</span>
+                        <button type="button" class="btn-qtd">+</button>
+                    </div>
+                </div>
 
-  </div>
+                <button type="button" class="btn-remover" title="Remover item">&times;</button>
+            </div>
+
+        </div>
+
+       
+        <div class="carrinho-vazio" style="display: none;">
+            <p>Seu carrinho está vazio no momento.</p>
+        </div>
+
+    </div>
+
+
+    <div class="carrinho-footer">
+        <div class="carrinho-subtotal">
+            <span>Subtotal:</span>
+            <strong id="carrinho-total-valor">R$ 10,00</strong>
+        </div>
+        
+        <div class="carrinho-acoes">
+            <a href="/checkout" class="btn btn-finalizar">Finalizar Compra</a>
+        </div>
+    </div>
+
 </aside>
