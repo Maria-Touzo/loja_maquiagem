@@ -7,7 +7,7 @@
     
     <!-- 1. Coluna/Área da Imagem -->
     <div class="product-media">
-        <img src="{{ url_for('static', filename='img/' ~ produto.foto_principal) }}" alt="{{ produto.nome_produto }}">
+        <img src="{{ produto.foto_principal}}" alt="{{ produto.nome_produto }}">
     </div>
 
     <!-- 2. Coluna/Área das Informações do Produto -->

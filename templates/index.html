@@ -31,7 +31,7 @@
         {% if produtos %}
             {% for produto in produtos %}
                 <div class="product-card">
-                    <img src="{{ url_for('static', filename='img/' ~ produto.foto_principal) }}" alt="{{ produto.nome_produto }}">
+                    <img src="{{ produto.foto_principal }}" alt="{{ produto.nome_produto }}">
                     <h3>{{ produto.nome_produto }}</h3>
                     <p class="price">R$ {{ "%.2f"|format(produto.preco) }}</p>
 
