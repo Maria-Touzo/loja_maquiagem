@@ -11,23 +11,17 @@ CREATE TABLE  IF NOT EXISTS tb_produtos (
  id_categoria INT NOT NULL,
  nome_produto VARCHAR(50) NOT NULL,
  descricao VARCHAR(200),
- preco DECIMAL(10,2) NOT NULL
+ preco DECIMAL(10,2) NOT NULL,
+ foto_principal VARCHAR(255)
 );
 
-
-
-CREATE TABLE  IF NOT EXISTS tb_produtos_imagens (
- id_imagem INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
- id_produto INT NOT NULL,
- url_imagem VARCHAR(255)
-);
 
 CREATE TABLE  IF NOT EXISTS tb_usuarios (
  id_usuario INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
  nome VARCHAR(150) ,
- email NOT NULL UNIQUE VARCHAR(150) ,
+ email VARCHAR(150) NOT NULL UNIQUE  ,
  telefone VARCHAR(20),
- senha NOT NULL VARCHAR(10),
+ senha VARCHAR(10) NOT NULL ,
  endereco VARCHAR(100)
 );
 
@@ -40,7 +34,6 @@ CREATE TABLE IF NOT EXISTS tb_comentarios (
 );
 
 ALTER TABLE tb_produtos ADD CONSTRAINT FK_tb_produtos FOREIGN KEY (id_categoria) REFERENCES tb_categorias (id_categoria);
-ALTER TABLE tb_produtos_imagens ADD CONSTRAINT FK_tb_produtos_imagens_0 FOREIGN KEY (id_produto) REFERENCES tb_produtos (id_produto);
 ALTER TABLE tb_comentarios ADD CONSTRAINT FK_tb_comentarios_0 FOREIGN KEY (id_produto) REFERENCES tb_produtos (id_produto);
 ALTER TABLE tb_comentarios ADD CONSTRAINT FK_tb_comentarios_1 FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id_usuario);
 
