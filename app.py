@@ -14,7 +14,7 @@ def index():
     return render_template("index.html", produtos = destaque)
 
 @app.route("/carrinho")
-def carinho():
+def carrinho():
     return render_template("carrinho.html")
 
 

@@ -5,16 +5,26 @@
 {% block conteudo %}
 <div class="product-detail-container">
     
-    <!-- 1. Coluna/Área da Imagem -->
+
     <div class="product-media">
-        <img src="{{ produto.foto_principal}}" alt="{{ produto.nome_produto }}">
+        <img src="{{ produto.foto_principal }}" alt="{{ produto.nome_produto }}">
     </div>
 
-    <!-- 2. Coluna/Área das Informações do Produto -->
+
     <div class="product-info-details">
         <h1>{{ produto.nome_produto }}</h1>
         <p class="price">R$ {{ produto.preco }}</p>
-        
+
+        <div class="purchase-action">
+            {% if session.get('usuario_id') %}
+                <form action="{{ url_for('adicionar_carrinho', produto_id=produto.id_produto) }}" method="POST">
+                    <button type="submit" class="btn-comprar">Adicionar ao Carrinho</button>
+                </form>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn-login-alerta">Faça login para comprar</a>
+            {% endif %}
+        </div>
+
         <div class="description">
             <h3>Descrição</h3>
             <p>{{ produto.descricao }}</p>
@@ -25,7 +35,7 @@
 
 <hr class="divider">
 
-<!-- 3. A sua Seção de Comentários (Mantenha exatamente como você enviou!) -->
+
 <section class="comments-section">
     <h3>Comentários dos Clientes</h3>
 
@@ -40,7 +50,7 @@
         <p>Sem comentários ainda. Seja o primeiro!</p>
     {% endif %}
 
-    <div>
+    <div class="comment-form-container">
         {% if session.get('usuario_id') %}
             <form action="{{ url_for('cadastrar_comentario') }}" method="POST">
                 <input type="hidden" name="id_produto" value="{{ produto.id_produto }}">

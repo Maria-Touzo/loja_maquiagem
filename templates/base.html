@@ -7,7 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/src/styles/index.css">
+    
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/styles/index.css') }}">
 </head>
 <body>
 
@@ -20,10 +22,17 @@
                 <li><a href="{{ url_for('index') }}">Início</a></li>
                 <li><a href="{{ url_for('catalogo') }}">Catálogo</a></li>
                 <li><a href="{{ url_for('categorias') }}">Categorias</a></li>
-                
+
                 {% if session.get('usuario_id') %}
+                    
+                    <li>
+                        <a href="{{ url_for('carrinho') }}" class="carrinho-link">
+                            🛒  (<span id="cart-count">{{ session.get('carrinho_count', 0) }}</span>)
+                        </a>
+                    </li>
                     <li><a href="{{ url_for('logout') }}" class="btn-nav btn-logout">Sair</a></li>
                 {% else %}
+                    
                     <li><a href="{{ url_for('login') }}" class="btn-nav btn-login">Login</a></li>
                     <li><a href="{{ url_for('cadastro') }}" class="btn-nav btn-cadastro">Cadastro</a></li>
                 {% endif %}
