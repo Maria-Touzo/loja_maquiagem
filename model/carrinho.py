@@ -2,14 +2,30 @@ from database.conexao import conectar
 
 class carrinho(id_usuario, id_produto, quantidade=1):
    def adicionar_carrinho():
-    conexao, cursor = conectar()
+
+    # verficando se o produto já está no carrinho
     cursor.execute("""
-                        INSERT INTO tb_carrinho (id_usuario, id_produto, quantidade)
-                        VALUES (%s, %s, %s )
-    """, (id_usuario, id_produto, quantidade))
-    conexao.commit()
-    conexao.close()
-    return True
+    SELECT id_carrinho, quantidade 
+    FROM tb_carrinho
+    WHERE id_usuario = %s AND id_produto = %s""", (id_usuario, id_produto))
+    item = cursor.fetchone()
+
+    # Se já estiver adicionado no carrinho, ele irá somar as qtde, para não ficar aparecendo mtas vezes o produto
+    if item:
+        cursor.execute("""
+                UPDATE tb_carrinho 
+                SET quantidade = quantidade + %s 
+                WHERE id_usuario = %s AND id_produto = %s
+            """, (quantidade, id_usuario, id_produto))
+    else:
+            # Se não tiver, adiciona
+            cursor.execute("""
+                INSERT INTO tb_carrinho (id_usuario, id_produto, quantidade)
+                VALUES (%s, %s, %s)
+            """, (id_usuario, id_produto, quantidade))
+            conexao.commit() 
+            conexao.close()
+            return True
 
     def listar_carrinho(id_usuario):
         conexao, cursor = conectar()
