@@ -1,58 +1,61 @@
-<!-- Fundo escuro semi-transparente para dar destaque ao carrinho -->
-<div id="carrinho-overlay" class="carrinho-overlay"></div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Carrinho - G Makeup</title>
+    <link rel="stylesheet" href="/static/src/styles/index.css">
+</head>
+<body>
 
-<!-- Painel Lateral do Carrinho (Drawer) -->
-<aside id="carrinho-lateral" class="carrinho-lateral">
-    
-    <!-- Cabeçalho do Carrinho -->
-    <div class="carrinho-header">
-        <h2>Seu Carrinho</h2>
-        <button type="button" id="btn-fechar-carrinho" class="btn-fechar" aria-label="Fechar carrinho">&times;</button>
-    </div>
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">G MAKEUP</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="index.html#catalogo" class="nav-link">Catálogo</a></li>
+                <li><a href="carrinho.html" class="nav-link active">Carrinho</a></li>
+                <li><span class="user-status">Olá, Usuário</span></li>
+                <li><a href="#" class="nav-link">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  
-    <div class="carrinho-body">
-        
-       
-        <div class="carrinho-itens">
-            
-           
-            <div class="carrinho-item">
-                <img src="static/img/batom_red.jpg" alt="Batom Vermelho" class="item-img">
-                
-                <div class="item-detalhes">
-                    <h4 class="item-titulo">Batom Vermelho</h4>
-                    <p class="item-preco">R$ 10,00</p>
-                    
-                    <div class="item-qtd-controles">
-                        <button type="button" class="btn-qtd">-</button>
-                        <span class="item-qtd">1</span>
-                        <button type="button" class="btn-qtd">+</button>
-                    </div>
-                </div>
+    <main>
+        <h2 class="section-title">Meu Carrinho de Compras</h2>
 
-                <button type="button" class="btn-remover" title="Remover item">&times;</button>
-            </div>
+        <!-- Tabela do Carrinho -->
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Preço Unitário</th>
+                    <th>Quantidade</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Exemplo de item adicionado -->
+                <tr>
+                    <td>
+                        <div class="cart-item-info">
+                            <img src="https://via.placeholder.com/60" alt="Batom">
+                            <span>Batom Matte Vermelho</span>
+                        </div>
+                    </td>
+                    <td>R$ 29,90</td>
+                    <td>1</td>
+                    <td>
+                        <button class="btn-remove">Remover</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
 
-        </div>
+    <footer>
+        <p>&copy; 2026 G Makeup - Todos os direitos reservados.</p>
+    </footer>
 
-       
-        <div class="carrinho-vazio" style="display: none;">
-            <p>Seu carrinho está vazio no momento.</p>
-        </div>
-
-    </div>
-
-
-    <div class="carrinho-footer">
-        <div class="carrinho-subtotal">
-            <span>Subtotal:</span>
-            <strong id="carrinho-total-valor">R$ 10,00</strong>
-        </div>
-        
-        <div class="carrinho-acoes">
-            <a href="/checkout" class="btn btn-finalizar">Finalizar Compra</a>
-        </div>
-    </div>
-
-</aside>
+</body>
+</html>
