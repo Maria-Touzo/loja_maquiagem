@@ -33,9 +33,20 @@ CREATE TABLE IF NOT EXISTS tb_comentarios (
  data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS tb_carrinho (
+ id_carrinho INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+ id_usuario INT NOT NULL,
+ id_produto INT NOT NULL,
+ quantidade INT,
+ data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP
+ );
+
 ALTER TABLE tb_produtos ADD CONSTRAINT FK_tb_produtos FOREIGN KEY (id_categoria) REFERENCES tb_categorias (id_categoria);
 ALTER TABLE tb_comentarios ADD CONSTRAINT FK_tb_comentarios_0 FOREIGN KEY (id_produto) REFERENCES tb_produtos (id_produto);
 ALTER TABLE tb_comentarios ADD CONSTRAINT FK_tb_comentarios_1 FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id_usuario);
+ALTER TABLE tb_carrinho 
+ADD CONSTRAINT FK_carrinho_usuario FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id_usuario) ON DELETE CASCADE,
+ADD CONSTRAINT FK_carrinho_produto FOREIGN KEY (id_produto) REFERENCES tb_produtos (id_produto) ON DELETE CASCADE;
 
 INSERT INTO tb_usuarios(nome, email, telefone, senha, endereco)
  VALUES('maju', 'maju.t@gmail.com', '(16) 998765544', 'maju12', 'rua das dores');
