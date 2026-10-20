@@ -3,6 +3,7 @@ from model.produtos import Produto
 from model.usuario import Usuario
 from model.comentarios import Comentario
 from model.categorias import Categoria
+from model.carrinho import Carrinho
 
 
 app = Flask(__name__)
@@ -16,7 +17,6 @@ def index():
 @app.route("/carrinho")
 def carrinho():
     return render_template("carrinho.html")
-
 
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
