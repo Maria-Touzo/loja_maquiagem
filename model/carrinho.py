@@ -1,49 +1,42 @@
 from database.conexao import conectar
 
+
 class Carrinho:
+    def __init__(self, id_usuario, id_produto, quantidade=1):
+        self.id_usuario = id_usuario
+        self.id_produto = id_produto
+        self.quantidade = quantidade
 
-    @staticmethod
-    def adicionar_carrinho(id_usuario, id_produto, quantidade=1):
-        conexao, cursor = conectar()
+    def adicionar_carrinho(self, conexao, cursor):
+        # verificando se o produto já está no carrinho
+        cursor.execute("""
+            SELECT id_carrinho, quantidade 
+            FROM tb_carrinho
+            WHERE id_usuario = %s AND id_produto = %s
+        """, (self.id_usuario, self.id_produto))
+        
+        item = cursor.fetchone()
 
-        try:
-            # Verificando se o produto já está no carrinho
+        # Se já estiver adicionado no carrinho, ele irá somar as quantidades
+        if item:
             cursor.execute("""
-                SELECT id_carrinho, quantidade 
-                FROM tb_carrinho
+                UPDATE tb_carrinho 
+                SET quantidade = quantidade + %s 
                 WHERE id_usuario = %s AND id_produto = %s
-            """, (id_usuario, id_produto))
-            item = cursor.fetchone()
+            """, (self.quantidade, self.id_usuario, self.id_produto))
+        else:
+            # Se não tiver, adiciona
+            cursor.execute("""
+                INSERT INTO tb_carrinho (id_usuario, id_produto, quantidade)
+                VALUES (%s, %s, %s)
+            """, (self.id_usuario, self.id_produto, self.quantidade))
 
-            # Se já estiver adicionado, apenas atualiza a quantidade
-            if item:
-                cursor.execute("""
-                    UPDATE tb_carrinho 
-                    SET quantidade = quantidade + %s 
-                    WHERE id_usuario = %s AND id_produto = %s
-                """, (quantidade, id_usuario, id_produto))
-            else:
-                # Se não tiver, adiciona novo registro
-                cursor.execute("""
-                    INSERT INTO tb_carrinho (id_usuario, id_produto, quantidade)
-                    VALUES (%s, %s, %s)
-                """, (id_usuario, id_produto, quantidade))
-
-            conexao.commit()
-            return True
-
-        except Exception as erro:
-            print(f"Erro ao adicionar ao carrinho: {erro}")
-            conexao.rollback()
-            return False
-
-        finally:
-            conexao.close()
+        conexao.commit()
+        return True
 
     @staticmethod
     def listar_carrinho(id_usuario):
         conexao, cursor = conectar()
-
         cursor.execute("""
             SELECT 
                 tb_carrinho.id_carrinho,
@@ -54,8 +47,8 @@ class Carrinho:
             FROM tb_carrinho 
             INNER JOIN tb_produtos ON tb_carrinho.id_produto = tb_produtos.id_produto
             WHERE tb_carrinho.id_usuario = %s;
-        """, (id_usuario,))
-
+        """, [id_usuario])
+        
         resultado = cursor.fetchall()
         conexao.close()
         return resultado

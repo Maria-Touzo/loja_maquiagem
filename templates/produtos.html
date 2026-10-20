@@ -17,7 +17,6 @@
 
         <div class="purchase-action">
             {% if session.get('usuario_id') %}
-                <!-- Substituído o <form> por um <button> com evento onclick -->
                 <button type="button" 
                         onclick="adicionarAoCarrinho(event, '{{ produto.id_produto }}')" 
                         class="btn-comprar">

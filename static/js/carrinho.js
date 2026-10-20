@@ -2,10 +2,6 @@ async function mostrar_carrinho(){
 
     // criando api
     const resposta = await fetch("api/get/carrinho");
-    // tratando erro
-    if (!resposta.ok) {
-        alert("ERRO AO CARREGAR CARRINHO.")
-    }
 
     // converte a resposta recebida pelo flask
     const dados = await resposta.json()
