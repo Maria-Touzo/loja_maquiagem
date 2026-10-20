@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container my-4">
+    <h2 class="section-title mb-4">Meu Carrinho de Compras</h2>
+
+    <!-- Container onde os itens serão injetados pelo JavaScript -->
+    <div id="carrinho" class="cart-container">
+        <p>A carregar produtos do carrinho...</p>
+    </div>
+</main>
+
+<!-- Importação do ficheiro JavaScript estático -->
+<script src="{{ url_for('static', filename='carrinho.js') }}"></script>
+{% endblock %}
